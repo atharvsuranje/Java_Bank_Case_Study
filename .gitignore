@@ -1,0 +1,22 @@
+/.metadata/
+
+# === Java ===
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# === Common build folders ===
+bin/
+build/
+dist/
+target/
+out/
+
+# === IDE / Editor folders ===
+.vscode/
+.idea/
+*.iml
+
+c_to_java/
