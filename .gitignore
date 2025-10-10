@@ -1,22 +1,33 @@
-/.metadata/
+# Eclipse
+.metadata/
+.settings/
+.classpath
+*.launch
+.recommenders/
+RemoteSystemsTempFiles/
 
-# === Java ===
+# Java
 *.class
 *.jar
 *.war
 *.ear
 *.log
 
-# === Common build folders ===
+# Build folders
 bin/
 build/
 dist/
 target/
 out/
 
-# === IDE / Editor folders ===
+# IDE
 .vscode/
 .idea/
 *.iml
 
+# OS
+.DS_Store
+Thumbs.db
+
+# Custom
 c_to_java/
