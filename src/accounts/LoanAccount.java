@@ -2,6 +2,8 @@ package accounts;
 
 import java.time.LocalDate;
 
+import helpers.Transaction;
+
 public class LoanAccount extends BankAccount{
 
 	private double loanAmount;
@@ -49,9 +51,13 @@ public class LoanAccount extends BankAccount{
 	public boolean withdraw(double amount) {
 		// TODO Auto-generated method stub
 		
-		
-		return true;
-		
+		if(this.getBalance()>=amount)
+		{
+			setBalance(getBalance()-amount);
+			getTransactions().add(new Transaction("Withdraw", getBalance(), amount));
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -71,4 +77,5 @@ public class LoanAccount extends BankAccount{
 		}
 		return false;
 	}
+	
 }
