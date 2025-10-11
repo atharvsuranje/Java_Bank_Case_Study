@@ -8,8 +8,8 @@ import helpers.Transaction;
 public abstract class BankAccount {
 	
 	//attributes
-	private int accNo;
 	private static int accountCounter=1000000;
+	private int accNo;
 	private String holderName;
 	private String mobileNo;
 	private String accountType;
@@ -18,7 +18,8 @@ public abstract class BankAccount {
 	private String holderCity;
 	private LocalDate openingDate;
 	private LocalDate closingDate;
-
+	private boolean accountStatus;
+	
 	//parameterized constructor
 	public BankAccount(String holderName, String mobileNo, String accountType, String holderCity) {
 		this.accNo = accountCounter++;
@@ -28,7 +29,7 @@ public abstract class BankAccount {
 		this.balance = 0;
 		this.holderCity = holderCity;
 		this.openingDate = LocalDate.now();
-		
+		this.setAccountStatus(true);
 		this.closingDate = null;
 	}
 
@@ -113,5 +114,13 @@ public abstract class BankAccount {
 		this.balance = this.balance+amount;
 		transactions.add(new Transaction("Deposit", this.balance , amount));
 		return true;
+	}
+
+	public boolean isAccountStatus() {
+		return accountStatus;
+	}
+
+	public void setAccountStatus(boolean accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 }

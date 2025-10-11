@@ -33,22 +33,40 @@ public class Bank {
 		this.accounts = accounts;
 	}
 
-	public void openAccount(String holderName, String mobileNo, String type, String holderCity) {
+	public boolean openAccount(String holderName, String mobileNo, String type, String holderCity) {
 		accounts.add(new SavingAccount(holderName, mobileNo, type, holderCity));
+		return true;
 	}
 
-	public void openAccount(String holderName, String mobileNo, String type, String holderCity,String employerName) {
+	public boolean openAccount(String holderName, String mobileNo, String type, String holderCity,String employerName) {
 		// TODO Auto-generated method stub
 		accounts.add(new SalaryAccount(holderName, mobileNo, type, holderCity,employerName));
+		return true;
 	}
 
-	public void openAccount(String holderName, String mobileNo, String type, String holderCity, double overDraftLimit) {
+	public boolean openAccount(String holderName, String mobileNo, String type, String holderCity, double overDraftLimit) {
 		accounts.add(new CurrentAccount(holderName, mobileNo, type, holderCity, overDraftLimit));
+		return true;
 	}
 
-	public void openAccount(String holderName, String mobileNo, String type, String holderCity, double loanAmount,int tenure) {
+	public boolean openAccount(String holderName, String mobileNo, String type, String holderCity, double loanAmount,int tenure) {
 		accounts.add(new LoanAccount(holderName, mobileNo, type, holderCity, loanAmount, tenure));
+		return true;
 	}
 
-	
+	public boolean closeAccount(int accNo) {
+		BankAccount bankAccount=searchAccountbyAccountNo(accNo);
+		if(bankAccount != null) {
+			bankAccount.setAccountStatus(false);
+			return true;
+		}
+		return false;
+	}
+
+	public BankAccount searchAccountbyAccountNo(int accNo) {
+		for(BankAccount bankAccount: accounts) {
+			if(bankAccount.getAccNo() == accNo) return bankAccount;
+		}
+		return null;
+	}
 }

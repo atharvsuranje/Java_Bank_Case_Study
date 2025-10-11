@@ -114,20 +114,20 @@ public class TestBank {
                             
                             switch(accountType) {
                             	case 1:
-                            		bank.openAccount(holderName,mobileNo,"Saving",holderCity);
-                            		System.out.println("Account Opened Successfully!!!");
+                            		if(bank.openAccount(holderName,mobileNo,"Saving",holderCity))
+                            			System.out.println("Account Opened Successfully!!!");
                             		break;
                             	case 2:
-                            		bank.openAccount(holderName,mobileNo,"Salary",holderCity,employerName);
-                            		System.out.println("Account Opened Successfully!!!");
+                            		if(bank.openAccount(holderName,mobileNo,"Salary",holderCity,employerName))
+                            			System.out.println("Account Opened Successfully!!!");
                             		break;
                             	case 3:
-                            		bank.openAccount(holderName,mobileNo,"Current",holderCity,overDraftLimit);
-                            		System.out.println("Account Opened Successfully!!!");
+                            		if(bank.openAccount(holderName,mobileNo,"Current",holderCity,overDraftLimit))
+                            			System.out.println("Account Opened Successfully!!!");
                             		break;
                             	case 4:
-                            		bank.openAccount(holderName,mobileNo,"Loan",holderCity,loanAmount,tenure);
-                            		System.out.println("Account Opened Successfully!!!");
+                            		if(bank.openAccount(holderName,mobileNo,"Loan",holderCity,loanAmount,tenure))
+                            			System.out.println("Account Opened Successfully!!!");
                             		break;
                             }
 
@@ -135,12 +135,25 @@ public class TestBank {
                         break;
 
                         case 2:
-                            // closeAccount()
-                            System.out.println("Closing Account...");
-                            break;
+                        	char choice='N';
+                        	do {
+                    			System.out.print("Enter Account Number : ");
+                    			int accNo=sc.nextInt();
+                    			if(bank.closeAccount(accNo)) {
+                    				System.out.println("Account Closed Successfully!!!");
+                    				cancelProcedure=true;                        				
+                    			}
+                    			else {
+                    				System.out.print("Do you want to proceed (Y/N) : ");
+                    				choice=sc.next().charAt(0);
+                    			}
+                    		}
+                    		while(choice == 'Y' || choice =='y');
+                            		
+                        			
                         case 3:
-                            // withdrawMoney()
                             System.out.println("Withdrawing Money...");
+                            // withdrawMoney()
                             break;
                         case 4:
                             // depositMoney()
@@ -196,4 +209,5 @@ public class TestBank {
 
         sc.close();
     }
+
 }
