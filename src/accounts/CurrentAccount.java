@@ -1,14 +1,12 @@
 package accounts;
 
-import java.time.LocalDate;
 import helpers.Transaction;
 
 public class CurrentAccount extends BankAccount{
 	private double overDraftLimit;
 
-	public CurrentAccount(int accNo, String holderName, String mobileNo, String accountType, double balance,
-			String holderCity, LocalDate openingDate,double overDraftLimit) {
-		super(accNo, holderName, mobileNo, accountType, balance, holderCity, openingDate);
+	public CurrentAccount(String holderName, String mobileNo, String accountType,String holderCity,double overDraftLimit) {
+		super(holderName, mobileNo, accountType, 0, holderCity);
 		this.overDraftLimit=overDraftLimit;
 	}
 

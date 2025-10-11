@@ -3,8 +3,8 @@ package helpers;
 import java.time.LocalDate;
 
 public class Transaction {
-	private static int idCounter = 100;
 	
+	private static int idCounter = 100;
 	private int transactionId;
 	private LocalDate transactionDate;
 	private String transactionType;

@@ -1,6 +1,5 @@
 package accounts;
 
-import java.time.LocalDate;
 import helpers.Transaction;
 
 public class SavingAccount extends BankAccount{
@@ -12,8 +11,8 @@ public class SavingAccount extends BankAccount{
 		minimumBalance=1000;
 	}
 	
-	public SavingAccount(int accNo, String holderName, String mobileNo, String accountType, double balance,String holderCity, LocalDate openingDate) {
-		super(accNo, holderName, mobileNo, accountType, balance, holderCity, openingDate);
+	public SavingAccount(String holderName, String mobileNo, String accType,double balance,String holderCity) {
+		super(holderName, mobileNo,accType, balance, holderCity);
 	}
 
 	public static double getInterestRate() {

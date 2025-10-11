@@ -1,24 +1,23 @@
 package accounts;
 
-import java.time.LocalDate;
-
 import helpers.Transaction;
 
 public class LoanAccount extends BankAccount{
 
 	private double loanAmount;
-	private double loanInterestRate;
+	private static double loanInterestRate;
 	private int tenureInMonths;
 	private double emiAmount;
 	
-	public LoanAccount(int accNo, String holderName, String mobileNo, String accountType, double balance,
-			String holderCity, LocalDate openingDate,double loanAmount,double loanInterestRate, int tenureInMonths) {
-		super(accNo, holderName, mobileNo, accountType, balance, holderCity, openingDate);
+	static {
+		loanInterestRate=12;
+	}
+	public LoanAccount(String holderName, String mobileNo, String accountType,
+			String holderCity,double loanAmount, int tenureInMonths) {
+		super(holderName, mobileNo, accountType,0, holderCity);
 		this.loanAmount=loanAmount;
-		this.loanInterestRate=loanInterestRate;
 		this.tenureInMonths=tenureInMonths;
 		this.emiAmount=(this.loanAmount + this.calculateInterest())/tenureInMonths;
-		// TODO Auto-generated constructor stub
 	}
 
 	public double getLoanInterestRate() {
@@ -26,7 +25,7 @@ public class LoanAccount extends BankAccount{
 	}
 
 	public void setLoanInterestRate(double loanInterestRate) {
-		this.loanInterestRate = loanInterestRate;
+		LoanAccount.loanInterestRate = loanInterestRate;
 	}
 
 

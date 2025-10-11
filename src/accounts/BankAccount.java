@@ -9,6 +9,7 @@ public abstract class BankAccount {
 	
 	//attributes
 	private int accNo;
+	private static int accountCounter=1000000;
 	private String holderName;
 	private String mobileNo;
 	private String accountType;
@@ -19,14 +20,14 @@ public abstract class BankAccount {
 	private LocalDate closingDate;
 
 	//parameterized constructor
-	public BankAccount(int accNo, String holderName, String mobileNo, String accountType, double balance, String holderCity, LocalDate openingDate) {
-		this.accNo = accNo;
+	public BankAccount(String holderName, String mobileNo, String accountType, double balance, String holderCity) {
+		this.accNo = accountCounter++;
 		this.holderName = holderName;
 		this.mobileNo = mobileNo;
 		this.accountType = accountType;
 		this.balance = balance;
 		this.holderCity = holderCity;
-		this.openingDate = openingDate;
+		this.openingDate = LocalDate.now();
 		
 		this.closingDate = null;
 	}

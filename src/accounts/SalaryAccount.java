@@ -16,8 +16,8 @@ public class SalaryAccount extends BankAccount{
 		interestRate=0.5;
 	}
 	
-	public SalaryAccount(int accNo, String holderName, String mobileNo, String accountType, double balance,String holderCity, LocalDate openingDate, LocalDate lastTranscationDate,String employerName) {
-		super(accNo, holderName, mobileNo, accountType, balance, holderCity, openingDate);
+	public SalaryAccount(String holderName, String mobileNo, String accountType,String holderCity,String employerName) {
+		super(holderName, mobileNo, accountType, 0, holderCity);
 		this.lastTransactionDate = null;
 		this.isFrozen = false;
 		this.employerName = employerName;
