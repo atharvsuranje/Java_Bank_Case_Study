@@ -109,6 +109,7 @@ public class SalaryAccount extends BankAccount{
 		        return true;
 			}
 		}
+		return false; //only to satisfy the compiler not logically needed.
 		
 	}
 
