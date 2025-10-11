@@ -99,7 +99,7 @@ public abstract class BankAccount {
 		return 0;
 	}
 	
-	public void deposit() {
-		
+	public void deposit(double amount) {
+		this.balance = this.balance+amount;
 	}
 }
