@@ -1,6 +1,7 @@
 package accounts;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import helpers.Transaction;
 
 public abstract class BankAccount {
@@ -11,12 +12,11 @@ public abstract class BankAccount {
 	private String mobileNo;
 	private String accountType;
 	private double balance;
-	private Transaction [] transactions =new Transaction[10];
-	private int transactionsCount;
+	private ArrayList<Transaction> transactions= new ArrayList<Transaction>();
 	private String holderCity;
 	private LocalDate openingDate;
 	private LocalDate closingDate;
-    
+
 	//parameterized constructor
 	public BankAccount(int accNo, String holderName, String mobileNo, String accountType, double balance, String holderCity, LocalDate openingDate) {
 		this.accNo = accNo;
@@ -26,9 +26,7 @@ public abstract class BankAccount {
 		this.balance = balance;
 		this.holderCity = holderCity;
 		this.openingDate = openingDate;
-
-		this.transactions = new Transaction[10];
-		this.transactionsCount = 0;
+		
 		this.closingDate = null;
 	}
 
@@ -53,12 +51,8 @@ public abstract class BankAccount {
 		return balance;
 	}
 
-	public Transaction[] getTransactions() {
+	public ArrayList<Transaction> getTransactions() {
 		return transactions;
-	}
-
-	public int getTransactionsCount() {
-		return transactionsCount;
 	}
 
 	public String getHolderCity() {
@@ -90,16 +84,20 @@ public abstract class BankAccount {
 		this.closingDate = closingDate;
 	}
 	
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
 	//abstract functions to be overridden
 	public abstract void withdraw();
 	public abstract void display();
 	
-	public double calcIntrest() {
-		
+	public double calculateIntrest() {
 		return 0;
 	}
 	
 	public void deposit(double amount) {
 		this.balance = this.balance+amount;
+		transactions.add(new Transaction("Deposit", this.balance , amount));
 	}
 }
