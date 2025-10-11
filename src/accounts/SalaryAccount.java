@@ -73,7 +73,7 @@ public class SalaryAccount extends BankAccount{
 			lastTransactionDate = getTransactions().get(getTransactions().size() - 1).getTransactionDate();
 			long monthsDiff = ChronoUnit.MONTHS.between(lastTransactionDate, LocalDate.now());
 			if(monthsDiff >= 2) {
-				return this.freezeProcedure(monthsDiff);
+				return false;
 			}
 			else {
 				if(this.getBalance()>=amount) {
@@ -99,7 +99,7 @@ public class SalaryAccount extends BankAccount{
 			lastTransactionDate = getTransactions().get(getTransactions().size() - 1).getTransactionDate();
 			long monthsDiff = ChronoUnit.MONTHS.between(lastTransactionDate, LocalDate.now());
 			if(monthsDiff >= 2) {
-				return this.freezeProcedure(monthsDiff);
+				return false;
 			}
 			else {
 				setBalance(getBalance() + amount);
@@ -110,32 +110,32 @@ public class SalaryAccount extends BankAccount{
 		
 	}
 
-	private boolean freezeProcedure(long monthsDiff) {
-		this.setFrozen(true);
-		System.out.println("Your account is frozen due to inactivity (" + monthsDiff + " months).");
-		do {
-			System.out.println(" 1. Unfreeze This Account By Paying Penalty of Rs. 500.");
-			System.out.println(" 2. Exit.");
-			System.out.print("Do you want to unfreeze it ? : ");
-			choice=sc.nextInt();
-			
-			switch(choice) {
-			case 1:
-				this.unFreeze();
-				this.setFrozen(false);
-				return true;
-				
-			case 2:
-				return false;
-				
-			default:
-				System.out.println("Enter a Valid Choice.");
-				break;
-			}
-		}
-		while(choice!=2);
-		return false;   //only to satisfy the compiler not logically needed.
-	}
+//	private boolean freezeProcedure(long monthsDiff) {
+//		this.setFrozen(true);
+//		System.out.println("Your account is frozen due to inactivity (" + monthsDiff + " months).");
+//		do {
+//			System.out.println(" 1. Unfreeze This Account By Paying Penalty of Rs. 500.");
+//			System.out.println(" 2. Exit.");
+//			System.out.print("Do you want to unfreeze it ? : ");
+//			choice=sc.nextInt();
+//			
+//			switch(choice) {
+//			case 1:
+//				this.unFreeze();
+//				this.setFrozen(false);
+//				return true;
+//				
+//			case 2:
+//				return false;
+//				
+//			default:
+//				System.out.println("Enter a Valid Choice.");
+//				break;
+//			}
+//		}
+//		while(choice!=2);
+//		return false;   //only to satisfy the compiler not logically needed.
+//	}
 	private void unFreeze() {
 		// TODO Auto-generated method stub
 		System.out.println("Pay Rs. 500 via Cash.");

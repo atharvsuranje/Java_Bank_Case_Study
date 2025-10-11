@@ -2,6 +2,9 @@ package business;
 
 import java.util.Scanner;
 
+import accounts.BankAccount;
+import accounts.CurrentAccount;
+import accounts.SalaryAccount;
 import accounts.SavingAccount;
 import helpers.Bank;
 
@@ -37,9 +40,9 @@ public class TestBank {
 
                     switch (subChoice) {
                     case 1:  // Open Account
-                        int accountType=0,tenure=0;
+                        int accountType=0,tenure=0, accountNo=0;
                         String holderName="", mobileNo="", holderCity="",employerName="";
-                        double overDraftLimit=0.0,loanAmount=0.0;
+                        double overDraftLimit=0.0,loanAmount=0.0,amount=0.0;
                         boolean cancelProcedure = false;
 
                         do {
@@ -141,23 +144,131 @@ public class TestBank {
                     			int accNo=sc.nextInt();
                     			if(bank.closeAccount(accNo)) {
                     				System.out.println("Account Closed Successfully!!!");
-                    				cancelProcedure=true;                        				
                     			}
                     			else {
+                    				System.out.println("Account Not Found !!");
                     				System.out.print("Do you want to proceed (Y/N) : ");
                     				choice=sc.next().charAt(0);
                     			}
                     		}
                     		while(choice == 'Y' || choice =='y');
+                        	break;
                             		
                         			
                         case 3:
-                            System.out.println("Withdrawing Money...");
-                            // withdrawMoney()
-                            break;
+                        	do {
+                        		choice='N';
+                        		System.out.println("Withdrawing Money...");
+                                System.out.print("Enter the Account NO : ");
+                                accountNo=sc.nextInt();
+                                sc.nextLine();
+                                BankAccount bankAccount=bank.searchAccountbyAccountNo(accountNo);
+                                if(bankAccount!=null) {
+                                	if(!bankAccount.getAccountStatus()) {
+                                		System.out.println("Amount Is Closed.");
+                                		System.out.print("Do you want to Reopen it? (Y/N) : ");
+                        				choice=sc.next().charAt(0);
+                        				if(choice == 'Y' || choice == 'y') {
+                        					bankAccount.setAccountStatus(true);
+                        					System.out.println("This Account is Reopened!!!");
+                        				}
+                                	}
+                                	System.out.print("Enter the Amount : ");
+                                	amount=sc.nextDouble();
+                                	if(bank.withdrawMoney(bankAccount,amount)) {
+                                		System.out.println("Amount Withdrawn Successfully.");
+                                	}
+                                	else {
+                                		if(bankAccount instanceof SavingAccount) {
+                                			if(bankAccount.getBalance() < amount)
+                                				System.out.println("Withdrawal Amount is Greater than Account Balance !!");
+                                			else 
+                                				System.out.println("Minimum Balance amount Requirement not Satisfied ");	
+                                		}
+                                		else if(bankAccount instanceof SalaryAccount){
+                                			if(bankAccount.getBalance() < amount)
+                                				System.out.println("Withdrawal Amount is Greater than Account Balance !!");
+                                			else {
+                                				System.out.println("Your account is frozen due to inactivity for more than 2 months");
+                                				int freezeChoice;
+                                				do {
+                                					System.out.println(" 1. Unfreeze This Account By Paying Penalty of Rs. 500.");
+                                					System.out.println(" 2. Exit.");
+                                					System.out.print("Do you want to unfreeze it ? : ");
+                                					freezeChoice=sc.nextInt();
+                                					
+                                					switch(freezeChoice) {
+                                						case 1:
+                                							((SalaryAccount) bankAccount).setFrozen(false);
+                                							System.out.println("Account is Unfrozen!!");
+                                							break;
+                                						case 2:
+                                							System.out.println("Account Remains Frozen!!!");
+                                							break;
+                                					}
+                                				}while(freezeChoice!=2);
+                                			}
+                                		}
+                                		else if(bankAccount instanceof CurrentAccount) {
+                                			System.out.println("Withdrawal Amount is Greater than Account Balance and Over Draft Limit!!");
+                                		}
+                                		else {
+                                			System.out.println("Withdrawal Amount is Greater than Account Balance !!");
+                                		}
+                                	}
+                                }
+                                else {
+                                	System.out.println("Account Not Found !!");
+                    				System.out.print("Do you want to proceed (Y/N) : ");
+                    				choice=sc.next().charAt(0);
+                                }
+                        	}
+                        	while(choice == 'Y' || choice =='y');
+                        	break;
+                            
                         case 4:
                             // depositMoney()
                             System.out.println("Depositing Money...");
+                            System.out.print("Enter the Account NO : ");
+                            accountNo=sc.nextInt();
+                            sc.nextLine();
+                            BankAccount bankAccount=bank.searchAccountbyAccountNo(accountNo);
+                            if(bankAccount!=null) {
+                            	if(!bankAccount.getAccountStatus()) {
+                            		System.out.println("Account is Closed!!");
+                            		System.out.print("Do you want to Reopen it? (Y/N) : ");
+                    				choice=sc.next().charAt(0);
+                    				if(choice == 'Y' || choice == 'y') {
+                    					bankAccount.setAccountStatus(true);
+                    					System.out.println("This Account is Reopened!!!");
+                    				}
+                            	}
+                            	System.out.print("Enter the Amount : ");
+                            	amount=sc.nextDouble();
+                            	if(bank.depositMoney(bankAccount,amount)) {
+                            		System.out.println("Amount Deposited Successfully.");
+                            	}
+                            	else {
+                        				System.out.println("Your account is frozen due to inactivity for more than 2 months");
+                        				int freezeChoice;
+                        				do {
+                        					System.out.println(" 1. Unfreeze This Account By Paying Penalty of Rs. 500.");
+                        					System.out.println(" 2. Exit.");
+                        					System.out.print("Do you want to unfreeze it ? : ");
+                        					freezeChoice=sc.nextInt();
+                        					
+                        					switch(freezeChoice) {
+                        						case 1:
+                        							((SalaryAccount) bankAccount).setFrozen(false);
+                        							System.out.println("Account is Unfrozen!!");
+                        							break;
+                        						case 2:
+                        							System.out.println("Account Remains Frozen!!!");
+                        							break;
+                        					}
+                        				}while(freezeChoice!=2);
+                        			}
+                            	}
                             break;
                         case 5:
                             // transferMoney()

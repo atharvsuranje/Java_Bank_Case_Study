@@ -69,4 +69,19 @@ public class Bank {
 		}
 		return null;
 	}
+
+	public boolean withdrawMoney(BankAccount bankAccount, double amount) {
+		// TODO Auto-generated method stub
+		if(bankAccount.withdraw(amount))
+			return true;
+		return false;
+	}
+
+	public boolean depositMoney(BankAccount bankAccount, double amount) {
+		if(bankAccount.deposit(amount))
+			return true;
+		return false;
+	}
+
+	
 }

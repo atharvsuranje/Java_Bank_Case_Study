@@ -90,6 +90,7 @@ public abstract class BankAccount {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+	
 
 	//abstract functions to be overridden
 	public abstract boolean withdraw(double amount);
@@ -116,7 +117,7 @@ public abstract class BankAccount {
 		return true;
 	}
 
-	public boolean isAccountStatus() {
+	public boolean getAccountStatus() {
 		return accountStatus;
 	}
 
