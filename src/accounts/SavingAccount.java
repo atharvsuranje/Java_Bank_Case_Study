@@ -1,6 +1,7 @@
 package accounts;
 
 import java.time.LocalDate;
+import helpers.Transaction;
 
 public class SavingAccount extends BankAccount{
 	private static double interestRate;
@@ -36,10 +37,15 @@ public class SavingAccount extends BankAccount{
     }
 
 	@Override
-	public boolean withdraw() {
+	public boolean withdraw(double amount) {
 		// TODO Auto-generated method stub
-		return true;
-		
+		if(amount > this.getBalance()) return false;
+		if(minimumBalance <= this.getBalance()-amount) {
+			setBalance(this.getBalance()-amount);
+			getTransactions().add(new Transaction("Withdraw", this.getBalance(), amount));
+			return true;
+		}
+		return false;
 	}
 
 	@Override

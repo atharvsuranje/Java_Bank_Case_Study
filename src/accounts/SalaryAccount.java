@@ -57,7 +57,7 @@ public class SalaryAccount extends BankAccount{
     }
 
 	@Override
-	public boolean withdraw() {
+	public boolean withdraw(double amount) {
 		
 		return true;
 		// TODO Auto-generated method stub
