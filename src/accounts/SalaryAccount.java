@@ -1,7 +1,6 @@
 package accounts;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
@@ -17,10 +16,10 @@ public class SalaryAccount extends BankAccount{
 		interestRate=0.5;
 	}
 	
-	public SalaryAccount(int accNo, String holderName, String mobileNo, String accountType, double balance,String holderCity, LocalDate openingDate, LocalDate lastTranscationDate, boolean isFrozen,String employerName) {
+	public SalaryAccount(int accNo, String holderName, String mobileNo, String accountType, double balance,String holderCity, LocalDate openingDate, LocalDate lastTranscationDate,String employerName) {
 		super(accNo, holderName, mobileNo, accountType, balance, holderCity, openingDate);
 		this.lastTransactionDate = null;
-		this.isFrozen = isFrozen;
+		this.isFrozen = false;
 		this.employerName = employerName;
 	}
 
@@ -60,15 +59,32 @@ public class SalaryAccount extends BankAccount{
 	public double calculateInterest() {
         return this.getBalance() * (interestRate/100);
     }
-
+	
+	Scanner sc= new Scanner(System.in);
+	int choice;
 	@Override
 	public boolean withdraw(double amount) {
-		if(this.getBalance()>=amount) {
-			setBalance(this.getBalance()-amount);
-			getTransactions().add(new Transaction("Withdraw", getBalance(), amount));
-			return true;
+		if (getTransactions().isEmpty()) {
+	        setBalance(getBalance() + amount);
+	        getTransactions().add(new Transaction("Withdraw", getBalance(), amount));
+	        return true;
+	    }
+		else {
+			lastTransactionDate = getTransactions().get(getTransactions().size() - 1).getTransactionDate();
+			long monthsDiff = ChronoUnit.MONTHS.between(lastTransactionDate, LocalDate.now());
+			if(monthsDiff >= 2) {
+				return this.freezeProcedure(monthsDiff);
+			}
+			else {
+				if(this.getBalance()>=amount) {
+					setBalance(this.getBalance()-amount);
+					getTransactions().add(new Transaction("Withdraw", getBalance(), amount));
+					return true;
+				}
+				else
+					return false;
+			}
 		}
-		return false;
 		// TODO Auto-generated method stub
 		
 	}
@@ -82,30 +98,8 @@ public class SalaryAccount extends BankAccount{
 		else {
 			lastTransactionDate = getTransactions().get(getTransactions().size() - 1).getTransactionDate();
 			long monthsDiff = ChronoUnit.MONTHS.between(lastTransactionDate, LocalDate.now());
-			Scanner sc= new Scanner(System.in);
-			int choice;
 			if(monthsDiff >= 2) {
-				System.out.println("Your account is frozen due to inactivity (" + monthsDiff + " months).");
-				do {
-					System.out.println(" 1. Unfreeze This Account By Paying Penalty of Rs. 500.");
-					System.out.println(" 2. Exit.");
-					System.out.print("Do you want to unfreeze it ? : ");
-					choice=sc.nextInt();
-					
-					switch(choice) {
-					case 1:
-						this.unFreeze();
-						return true;
-						
-					case 2:
-						return false;
-						
-					default:
-						System.out.println("Enter a Valid Choice.");
-						break;
-					}
-				}
-				while(choice!=2);
+				return this.freezeProcedure(monthsDiff);
 			}
 			else {
 				setBalance(getBalance() + amount);
@@ -113,10 +107,35 @@ public class SalaryAccount extends BankAccount{
 		        return true;
 			}
 		}
-		return false; //only to satisfy the compiler not logically needed.
 		
 	}
 
+	private boolean freezeProcedure(long monthsDiff) {
+		this.setFrozen(true);
+		System.out.println("Your account is frozen due to inactivity (" + monthsDiff + " months).");
+		do {
+			System.out.println(" 1. Unfreeze This Account By Paying Penalty of Rs. 500.");
+			System.out.println(" 2. Exit.");
+			System.out.print("Do you want to unfreeze it ? : ");
+			choice=sc.nextInt();
+			
+			switch(choice) {
+			case 1:
+				this.unFreeze();
+				this.setFrozen(false);
+				return true;
+				
+			case 2:
+				return false;
+				
+			default:
+				System.out.println("Enter a Valid Choice.");
+				break;
+			}
+		}
+		while(choice!=2);
+		return false;   //only to satisfy the compiler not logically needed.
+	}
 	private void unFreeze() {
 		// TODO Auto-generated method stub
 		System.out.println("Pay Rs. 500 via Cash.");
@@ -128,7 +147,11 @@ public class SalaryAccount extends BankAccount{
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		
+		super.display();
+		 System.out.printf("%-25s : %s%n", "Employer Name", this.employerName);
+		 System.out.printf("%-25s : %s%n", "Account Status", (isFrozen ? "Frozen" : "Active"));
+
+		 
 	}
 	
 }

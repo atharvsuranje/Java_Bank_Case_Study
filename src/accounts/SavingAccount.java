@@ -47,10 +47,5 @@ public class SavingAccount extends BankAccount{
 		}
 		return false;
 	}
-
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

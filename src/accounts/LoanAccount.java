@@ -63,6 +63,10 @@ public class LoanAccount extends BankAccount{
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
+		super.display();
+		System.out.printf("%-25s : %.2f%n", "Loan Amount", this.loanAmount);
+		System.out.printf("%-25s : %d%n", "Tenure in Month", this.tenureInMonths);
+		System.out.printf("%-25s : %.2f%n", "EMI Amount", this.emiAmount);
 	}
 	
 	public double calculateInterest() {

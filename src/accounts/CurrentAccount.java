@@ -46,7 +46,8 @@ public class CurrentAccount extends BankAccount{
 	public void display() {
 		// TODO Auto-generated method stub
 		
-		
+		super.display();
+		System.out.printf("%-25s : %.2f%n", "OverDraft Limit", this.overDraftLimit);
 	}
 	
 	

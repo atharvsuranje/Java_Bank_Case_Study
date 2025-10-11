@@ -1,6 +1,7 @@
 package accounts;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import helpers.Transaction;
 
@@ -90,7 +91,18 @@ public abstract class BankAccount {
 
 	//abstract functions to be overridden
 	public abstract boolean withdraw(double amount);
-	public abstract void display();
+	public void display() {
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		
+		    System.out.println("\n==================== ACCOUNT DETAILS ====================");
+		    System.out.printf("%-25s : %d%n", "Account Number", accNo);
+		    System.out.printf("%-25s : %s%n", "Account Holder Name", holderName);
+		    System.out.printf("%-25s : %s%n", "Mobile Number", mobileNo);
+		    System.out.printf("%-25s : %s%n", "Account Type", accountType);
+		    System.out.printf("%-25s : %.2f%n", "Balance", balance);
+		    System.out.printf("%-25s : %s%n", "City", holderCity);
+		    System.out.printf("%-25s : %s%n", "Opening Date", openingDate.format(formatter));
+	}
 	
 	public double calculateIntrest() {
 		return 0;
