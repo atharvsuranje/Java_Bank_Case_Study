@@ -54,7 +54,7 @@ public abstract class BankAccount {
 	public ArrayList<Transaction> getTransactions() {
 		return transactions;
 	}
-
+	
 	public String getHolderCity() {
 		return holderCity;
 	}
