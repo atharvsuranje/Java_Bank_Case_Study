@@ -33,8 +33,8 @@ public class Bank {
 		this.accounts = accounts;
 	}
 
-	public void openAccount(String holderName, String mobileNo, String type, double balance, String holderCity) {
-		accounts.add(new SavingAccount(holderName, mobileNo, type, balance, holderCity));
+	public void openAccount(String holderName, String mobileNo, String type, String holderCity) {
+		accounts.add(new SavingAccount(holderName, mobileNo, type, holderCity));
 	}
 
 	public void openAccount(String holderName, String mobileNo, String type, String holderCity,String employerName) {

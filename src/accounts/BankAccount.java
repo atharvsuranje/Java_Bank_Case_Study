@@ -20,12 +20,12 @@ public abstract class BankAccount {
 	private LocalDate closingDate;
 
 	//parameterized constructor
-	public BankAccount(String holderName, String mobileNo, String accountType, double balance, String holderCity) {
+	public BankAccount(String holderName, String mobileNo, String accountType, String holderCity) {
 		this.accNo = accountCounter++;
 		this.holderName = holderName;
 		this.mobileNo = mobileNo;
 		this.accountType = accountType;
-		this.balance = balance;
+		this.balance = 0;
 		this.holderCity = holderCity;
 		this.openingDate = LocalDate.now();
 		

@@ -17,7 +17,7 @@ public class SalaryAccount extends BankAccount{
 	}
 	
 	public SalaryAccount(String holderName, String mobileNo, String accountType,String holderCity,String employerName) {
-		super(holderName, mobileNo, accountType, 0, holderCity);
+		super(holderName, mobileNo, accountType, holderCity);
 		this.lastTransactionDate = null;
 		this.isFrozen = false;
 		this.employerName = employerName;

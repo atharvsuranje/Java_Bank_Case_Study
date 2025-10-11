@@ -114,7 +114,7 @@ public class TestBank {
                             
                             switch(accountType) {
                             	case 1:
-                            		bank.openAccount(holderName,mobileNo,"Saving",1000,holderCity);
+                            		bank.openAccount(holderName,mobileNo,"Saving",holderCity);
                             		System.out.println("Account Opened Successfully!!!");
                             		break;
                             	case 2:

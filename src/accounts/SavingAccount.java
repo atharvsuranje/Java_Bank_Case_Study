@@ -11,8 +11,9 @@ public class SavingAccount extends BankAccount{
 		minimumBalance=1000;
 	}
 	
-	public SavingAccount(String holderName, String mobileNo, String accType,double balance,String holderCity) {
-		super(holderName, mobileNo,accType, balance, holderCity);
+	public SavingAccount(String holderName, String mobileNo, String accType,String holderCity) {
+		super(holderName, mobileNo,accType, holderCity);
+		super.deposit(minimumBalance);
 	}
 
 	public static double getInterestRate() {

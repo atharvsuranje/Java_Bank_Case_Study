@@ -14,7 +14,7 @@ public class LoanAccount extends BankAccount{
 	}
 	public LoanAccount(String holderName, String mobileNo, String accountType,
 			String holderCity,double loanAmount, int tenureInMonths) {
-		super(holderName, mobileNo, accountType,0, holderCity);
+		super(holderName, mobileNo, accountType, holderCity);
 		this.loanAmount=loanAmount;
 		this.tenureInMonths=tenureInMonths;
 		this.emiAmount=(this.loanAmount + this.calculateInterest())/tenureInMonths;

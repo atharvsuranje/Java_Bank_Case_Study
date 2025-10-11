@@ -6,7 +6,7 @@ public class CurrentAccount extends BankAccount{
 	private double overDraftLimit;
 
 	public CurrentAccount(String holderName, String mobileNo, String accountType,String holderCity,double overDraftLimit) {
-		super(holderName, mobileNo, accountType, 0, holderCity);
+		super(holderName, mobileNo, accountType, holderCity);
 		this.overDraftLimit=overDraftLimit;
 	}
 
