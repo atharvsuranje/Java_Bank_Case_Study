@@ -57,7 +57,6 @@ public class LoanAccount extends BankAccount{
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	public double calculateInterest() {

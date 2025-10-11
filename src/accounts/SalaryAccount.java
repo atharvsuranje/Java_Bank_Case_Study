@@ -63,8 +63,12 @@ public class SalaryAccount extends BankAccount{
 
 	@Override
 	public boolean withdraw(double amount) {
-		
-		return true;
+		if(this.getBalance()>=amount) {
+			setBalance(this.getBalance()-amount);
+			getTransactions().add(new Transaction("Withdraw", getBalance(), amount));
+			return true;
+		}
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
