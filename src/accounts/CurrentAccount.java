@@ -26,12 +26,13 @@ public class CurrentAccount extends BankAccount{
 		if(amount<=getBalance()+this.overDraftLimit) {
 			if(amount > getBalance()) {
 				setOverDraftLimit(getOverDraftLimit()-(amount-getBalance()));
-				getTransactions().add("Withdraw",getBalance(),amount);
+				setBalance(0);
+				getTransactions().add(new Transaction("Withdraw",getBalance(),amount));
 				return true;
 			}
 			else {
 				setBalance(getBalance()-amount);
-				getTransactions().add("Withdraw",getBalance(),amount);
+				getTransactions().add(new Transaction("Withdraw",getBalance(),amount));
 				return true;
 				
 			}

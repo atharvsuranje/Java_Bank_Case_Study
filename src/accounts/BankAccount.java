@@ -96,8 +96,9 @@ public abstract class BankAccount {
 		return 0;
 	}
 	
-	public void deposit(double amount) {
+	public boolean deposit(double amount) {
 		this.balance = this.balance+amount;
 		transactions.add(new Transaction("Deposit", this.balance , amount));
+		return true;
 	}
 }
