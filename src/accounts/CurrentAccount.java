@@ -20,8 +20,9 @@ public class CurrentAccount extends BankAccount{
 	}
 
 	@Override
-	public void withdraw() {
+	public boolean withdraw() {
 		// TODO Auto-generated method stub
+		return true;
 		
 	}
 

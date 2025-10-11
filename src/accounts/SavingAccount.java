@@ -36,8 +36,9 @@ public class SavingAccount extends BankAccount{
     }
 
 	@Override
-	public void withdraw() {
+	public boolean withdraw() {
 		// TODO Auto-generated method stub
+		return true;
 		
 	}
 

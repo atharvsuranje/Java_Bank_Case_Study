@@ -89,7 +89,7 @@ public abstract class BankAccount {
 	}
 
 	//abstract functions to be overridden
-	public abstract void withdraw();
+	public abstract boolean withdraw();
 	public abstract void display();
 	
 	public double calculateIntrest() {
