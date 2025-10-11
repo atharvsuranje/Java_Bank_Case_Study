@@ -1,6 +1,7 @@
 package accounts;
 
 import java.time.LocalDate;
+import helpers.Transaction;
 
 public class CurrentAccount extends BankAccount{
 	private double overDraftLimit;
@@ -20,9 +21,23 @@ public class CurrentAccount extends BankAccount{
 	}
 
 	@Override
-	public boolean withdraw() {
+	public boolean withdraw(double amount) {
 		// TODO Auto-generated method stub
-		return true;
+		if(amount<=getBalance()+this.overDraftLimit) {
+			if(amount > getBalance()) {
+				setOverDraftLimit(getOverDraftLimit()-(amount-getBalance()));
+				getTransactions().add("Withdraw",getBalance(),amount);
+				return true;
+			}
+			else {
+				setBalance(getBalance()-amount);
+				getTransactions().add("Withdraw",getBalance(),amount);
+				return true;
+				
+			}
+		}
+		
+		return false;
 		
 	}
 
