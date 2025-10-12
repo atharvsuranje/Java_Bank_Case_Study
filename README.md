@@ -1,234 +1,118 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
+    <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="25%">
 </p>
-<p align="center"><h1 align="center">JAVA_BANK_CASE_STUDY</h1></p>
-<p align="center">
-	<em><code>❯ REPLACE-ME</code></em>
-</p>
-<p align="center">
-	<img src="https://img.shields.io/github/license/atharvsuranje/Java_Bank_Case_Study?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
-	<img src="https://img.shields.io/github/last-commit/atharvsuranje/Java_Bank_Case_Study?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
-	<img src="https://img.shields.io/github/languages/top/atharvsuranje/Java_Bank_Case_Study?style=default&color=0080ff" alt="repo-top-language">
-	<img src="https://img.shields.io/github/languages/count/atharvsuranje/Java_Bank_Case_Study?style=default&color=0080ff" alt="repo-language-count">
-</p>
-<p align="center"><!-- default option, no dependency badges. -->
-</p>
-<p align="center">
-	<!-- default option, no dependency badges. -->
-</p>
-<br>
 
-## 🔗 Table of Contents
+# JAVA_BANK_CASE_STUDY
 
-- [📍 Overview](#-overview)
-- [👾 Features](#-features)
-- [📁 Project Structure](#-project-structure)
-  - [📂 Project Index](#-project-index)
-- [🚀 Getting Started](#-getting-started)
-  - [☑️ Prerequisites](#-prerequisites)
-  - [⚙️ Installation](#-installation)
-  - [🤖 Usage](#🤖-usage)
-  - [🧪 Testing](#🧪-testing)
-- [📌 Project Roadmap](#-project-roadmap)
-- [🔰 Contributing](#-contributing)
-- [🎗 License](#-license)
-- [🙌 Acknowledgments](#-acknowledgments)
+<p align="center">
+	<em>A Banking Management System implemented in Java</em>
+</p>
+
+<p align="center">
+	<img src="https://img.shields.io/github/license/atharvsuranje/Java_Bank_Case_Study?style=flat-square&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
+	<img src="https://img.shields.io/github/last-commit/atharvsuranje/Java_Bank_Case_Study?style=flat-square&logo=git&logoColor=white&color=0080ff" alt="last-commit">
+	<img src="https://img.shields.io/github/languages/top/atharvsuranje/Java_Bank_Case_Study?style=flat-square&color=0080ff" alt="repo-top-language">
+	<img src="https://img.shields.io/github/languages/count/atharvsuranje/Java_Bank_Case_Study?style=flat-square&color=0080ff" alt="repo-language-count">
+</p>
 
 ---
 
-## 📍 Overview
+## 🔗 Table of Contents
+- [📍 Overview](#-overview)
+- [👾 Features](#-features)
+- [📁 Project Structure](#-project-structure)
+- [🚀 Getting Started](#-getting-started)
+- [🔰 Contributing](#-contributing)
+- [🎗 License](#-license)
+- [🙌 Acknowledgments](#-acknowledgments)
+---
 
-<code>❯ REPLACE-ME</code>
+## 📍 Overview
+Java Bank Case Study is a console-based banking management system implemented in Java. It supports multiple account types such as **Saving**, **Salary**, **Current**, and **Loan** accounts. Users can perform operations like deposit, withdrawal, fund transfer, and EMI payments. The project also tracks transactions and generates bank reports.
 
 ---
 
 ## 👾 Features
-
-<code>❯ REPLACE-ME</code>
+- Create and manage different types of bank accounts.
+- Perform deposits, withdrawals, and fund transfers.
+- Automatic handling of interest calculation for loans and salary accounts.
+- EMI management for Loan Accounts.
+- Freeze and unfreeze accounts based on inactivity.
+- View detailed transaction history per account.
+- Generate summary reports for the bank branch.
 
 ---
 
 ## 📁 Project Structure
-
-```sh
-└── Java_Bank_Case_Study/
-    └── src
-        ├── accounts
-        ├── business
-        └── helpers
-```
-
-
-### 📂 Project Index
+Java_Bank_Case_Study/
+└── src/
+├── accounts/       # All account types (BankAccount, Saving, Salary, Current, Loan)
+├── business/       # Main testing class (TestBank)
+└── helpers/        # Bank operations and Transaction class
 <details open>
-	<summary><b><code>JAVA_BANK_CASE_STUDY/</code></b></summary>
-	<details> <!-- __root__ Submodule -->
-		<summary><b>__root__</b></summary>
-		<blockquote>
-			<table>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- src Submodule -->
-		<summary><b>src</b></summary>
-		<blockquote>
-			<details>
-				<summary><b>helpers</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/atharvsuranje/Java_Bank_Case_Study/blob/master/src/helpers/Bank.java'>Bank.java</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/atharvsuranje/Java_Bank_Case_Study/blob/master/src/helpers/Transaction.java'>Transaction.java</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-			<details>
-				<summary><b>business</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/atharvsuranje/Java_Bank_Case_Study/blob/master/src/business/TestBank.java'>TestBank.java</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-			<details>
-				<summary><b>accounts</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/atharvsuranje/Java_Bank_Case_Study/blob/master/src/accounts/SalaryAccount.java'>SalaryAccount.java</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/atharvsuranje/Java_Bank_Case_Study/blob/master/src/accounts/SavingAccount.java'>SavingAccount.java</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/atharvsuranje/Java_Bank_Case_Study/blob/master/src/accounts/LoanAccount.java'>LoanAccount.java</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/atharvsuranje/Java_Bank_Case_Study/blob/master/src/accounts/CurrentAccount.java'>CurrentAccount.java</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/atharvsuranje/Java_Bank_Case_Study/blob/master/src/accounts/BankAccount.java'>BankAccount.java</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-		</blockquote>
-	</details>
+<summary><b>📂 Project File Index</b></summary>
+<br>
+
+| File Path | Description |
+|-----------|-------------|
+| `src/accounts/BankAccount.java` | Base class for all types of bank accounts. |
+| `src/accounts/SavingAccount.java` | Represents Saving Accounts. |
+| `src/accounts/SalaryAccount.java` | Represents Salary Accounts. |
+| `src/accounts/CurrentAccount.java`| Represents Current Accounts with overdraft limits. |
+| `src/accounts/LoanAccount.java` | Represents Loan Accounts with EMI and interest calculation. |
+| `src/helpers/Bank.java` | Manages bank operations and report generation. |
+| `src/helpers/Transaction.java` | Represents a single transaction. |
+| `src/business/TestBank.java` | Main class to test and demonstrate bank operations. |
+
 </details>
 
 ---
+
 ## 🚀 Getting Started
 
 ### ☑️ Prerequisites
-
-Before getting started with Java_Bank_Case_Study, ensure your runtime environment meets the following requirements:
-
-- **Programming Language:** Java
-
+- **Java 17** or higher installed on your system.
+- Basic understanding of Java OOP concepts.
 
 ### ⚙️ Installation
-
-Install Java_Bank_Case_Study using one of the following methods:
-
-**Build from source:**
-
-1. Clone the Java_Bank_Case_Study repository:
-```sh
-❯ git clone https://github.com/atharvsuranje/Java_Bank_Case_Study
-```
-
-2. Navigate to the project directory:
-```sh
-❯ cd Java_Bank_Case_Study
-```
-
-3. Install the project dependencies:
-
-echo 'INSERT-INSTALL-COMMAND-HERE'
-
-
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/atharvsuranje/Java_Bank_Case_Study](https://github.com/atharvsuranje/Java_Bank_Case_Study)
+    ```
+2.  **Navigate to the project folder:**
+    ```bash
+    cd Java_Bank_Case_Study
+    ```
+3.  **Compile the source code:**
+    ```bash
+    javac -d bin src/helpers/*.java src/accounts/*.java src/business/*.java
+    ```
 
 ### 🤖 Usage
-Run Java_Bank_Case_Study using the following command:
-echo 'INSERT-RUN-COMMAND-HERE'
-
-### 🧪 Testing
-Run the test suite using the following command:
-echo 'INSERT-TEST-COMMAND-HERE'
-
+Run the application from the project's root directory:
+```bash
+java -cp bin business.TestBank
+```
+The console will display menu options for creating accounts, depositing, withdrawing, transferring funds, paying EMI, and viewing transactions.
 ---
-## 📌 Project Roadmap
-
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
+🧪 Testing
+Currently, testing is performed manually via the TestBank console application. Future versions may include JUnit automated tests.
 ---
-
 ## 🔰 Contributing
-
-- **💬 [Join the Discussions](https://github.com/atharvsuranje/Java_Bank_Case_Study/discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://github.com/atharvsuranje/Java_Bank_Case_Study/issues)**: Submit bugs found or log feature requests for the `Java_Bank_Case_Study` project.
-- **💡 [Submit Pull Requests](https://github.com/atharvsuranje/Java_Bank_Case_Study/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-
-<details closed>
-<summary>Contributing Guidelines</summary>
-
-1. **Fork the Repository**: Start by forking the project repository to your github account.
-2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
-   ```sh
-   git clone https://github.com/atharvsuranje/Java_Bank_Case_Study
-   ```
-3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
-   ```sh
-   git checkout -b new-feature-x
-   ```
-4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
-   ```sh
-   git commit -m 'Implemented new feature x.'
-   ```
-6. **Push to github**: Push the changes to your forked repository.
-   ```sh
-   git push origin new-feature-x
-   ```
-7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
-8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
-</details>
-
-<details closed>
-<summary>Contributor Graph</summary>
-<br>
-<p align="left">
-   <a href="https://github.com{/atharvsuranje/Java_Bank_Case_Study/}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=atharvsuranje/Java_Bank_Case_Study">
-   </a>
-</p>
-</details>
-
+Contributions are welcome! Here's how you can help:
 ---
-
+💬 Discussions: Share insights or ask questions via GitHub Discussions.
+---
+🐛 Report Issues: Submit bugs or feature requests via GitHub Issues.
+---
+💡 Pull Requests: Fork the repo, make your changes, and submit a PR.
+---
 ## 🎗 License
-
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
-
----
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ## 🙌 Acknowledgments
+Inspired by academic banking case studies.
 
-- List any resources, contributors, inspiration, etc. here.
+Java OOP tutorials and references.
 
----
+The GitHub community for best practices in project structure.
