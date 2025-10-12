@@ -38,7 +38,6 @@ public class SavingAccount extends BankAccount{
 
 	@Override
 	public boolean withdraw(double amount) {
-		// TODO Auto-generated method stub
 		if(amount > this.getBalance()) return false;
 		if(minimumBalance <= this.getBalance()-amount) {
 			setBalance(this.getBalance()-amount);

@@ -16,7 +16,7 @@ public class Transaction {
 		this.transactionDate = LocalDate.now();
 		this.transactionType = transactionType;
 		this.amount = amount;
-		this.balanceAfter = balance+amount;                                                                                                                                                                                                                                                                                                                                                                                                 
+		this.balanceAfter = balance;                                                                                                                                                                                                                                                                                                                                                                                                 
 	}
 
 	public int getTransactionId() {

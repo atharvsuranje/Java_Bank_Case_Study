@@ -83,6 +83,11 @@ public abstract class BankAccount {
 		this.holderCity = holderCity;
 	}
 
+	
+	public void setOpeningDate(LocalDate openingDate) {
+		this.openingDate = openingDate;
+	}
+
 	public void setClosingDate(LocalDate closingDate) {
 		this.closingDate = closingDate;
 	}
@@ -90,7 +95,14 @@ public abstract class BankAccount {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
+
+	public boolean getAccountStatus() {
+		return accountStatus;
+	}
+
+	public void setAccountStatus(boolean accountStatus) {
+		this.accountStatus = accountStatus;
+	}
 
 	//abstract functions to be overridden
 	public abstract boolean withdraw(double amount);
@@ -102,6 +114,7 @@ public abstract class BankAccount {
 		    System.out.printf("%-25s : %s%n", "Account Holder Name", holderName);
 		    System.out.printf("%-25s : %s%n", "Mobile Number", mobileNo);
 		    System.out.printf("%-25s : %s%n", "Account Type", accountType);
+		    System.out.printf("%-25s : %s%n", "Account Status", (accountStatus) ? "Active" : "Closed");
 		    System.out.printf("%-25s : %.2f%n", "Balance", balance);
 		    System.out.printf("%-25s : %s%n", "City", holderCity);
 		    System.out.printf("%-25s : %s%n", "Opening Date", openingDate.format(formatter));
@@ -116,12 +129,28 @@ public abstract class BankAccount {
 		transactions.add(new Transaction("Deposit", this.balance , amount));
 		return true;
 	}
+	
+	public void displayAllTransactions() {
+	    if (transactions.isEmpty()) {
+	        System.out.println("No transactions found for this account.");
+	        return;
+	    }
 
-	public boolean getAccountStatus() {
-		return accountStatus;
+	    System.out.println("\n------------------------------------------------------------------------------------------------------------------------");
+	    System.out.printf("| %-10s | %-12s | %-12s | %-10s | %-12s |\n","Trans. ID", "Date", "Type", "Amount", "Balance");
+	    System.out.println("------------------------------------------------------------------------------------------------------------------------");
+
+	    for (Transaction t : transactions) {
+	        System.out.printf("| %-10d | %-12s | %-12s | %-10.2f | %-12.2f |\n",
+	                t.getTransactionId(),
+	                t.getTransactionDate(),
+	                t.getTransactionType(),
+	                t.getAmount(),
+	                t.getBalanceAfter());
+	    }
+
+	    System.out.println("------------------------------------------------------------------------------------------------------------------------");
 	}
 
-	public void setAccountStatus(boolean accountStatus) {
-		this.accountStatus = accountStatus;
-	}
+
 }

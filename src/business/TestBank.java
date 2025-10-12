@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import accounts.BankAccount;
 import accounts.CurrentAccount;
+import accounts.LoanAccount;
 import accounts.SalaryAccount;
 import accounts.SavingAccount;
 import helpers.Bank;
@@ -15,7 +16,7 @@ public class TestBank {
     	Bank bank=new Bank();
         Scanner sc = new Scanner(System.in);
         int mainChoice, subChoice;
-        boolean exit = false;
+        System.out.println("--------------------------------------------------------------");
 
          do{
             System.out.println("\n===== Bank Management System =====");
@@ -24,7 +25,7 @@ public class TestBank {
             System.out.println("3. Exit");
             System.out.print("Enter your choice: ");
             mainChoice = sc.nextInt();
-
+            System.out.println("--------------------------------------------------------------");
             switch (mainChoice) {
                 case 1:
                     System.out.println("\n--- Over the Counter Activities ---");
@@ -33,11 +34,12 @@ public class TestBank {
                     System.out.println("3. Withdraw Money");
                     System.out.println("4. Deposit Money");
                     System.out.println("5. Transfer Money");
-                    System.out.println("6. Calculate Interest");
+                    System.out.println("6. Pay EMI");
                     System.out.println("7. Display All Transactions for an Account Holder");
+                    System.out.println("8. Exit");
                     System.out.print("Enter your choice: ");
                     subChoice = sc.nextInt();
-
+                    System.out.println("--------------------------------------------------------------");
                     switch (subChoice) {
                     case 1:  // Open Account
                         int accountType=0,tenure=0, accountNo=0;
@@ -55,10 +57,10 @@ public class TestBank {
                             System.out.print("Enter Selected Account : ");
                             accountType = sc.nextInt();
                             sc.nextLine(); // consume newline
-
                             if(accountType == 5) { 
                                 System.out.println("Procedure Cancelled!");
                                 cancelProcedure = true;
+                                System.out.println("--------------------------------------------------------------");
                                 break;
                             }
 
@@ -133,6 +135,7 @@ public class TestBank {
                             			System.out.println("Account Opened Successfully!!!");
                             		break;
                             }
+                            break;
 
                         } while(!cancelProcedure);
                         break;
@@ -172,6 +175,7 @@ public class TestBank {
                         					bankAccount.setAccountStatus(true);
                         					System.out.println("This Account is Reopened!!!");
                         				}
+                        				else break;
                                 	}
                                 	System.out.print("Enter the Amount : ");
                                 	amount=sc.nextDouble();
@@ -224,8 +228,8 @@ public class TestBank {
                                 }
                         	}
                         	while(choice == 'Y' || choice =='y');
-                        	break;
-                            
+                        	 System.out.println("--------------------------------------------------------------");
+                        	break;  
                         case 4:
                             // depositMoney()
                             System.out.println("Depositing Money...");
@@ -242,6 +246,7 @@ public class TestBank {
                     					bankAccount.setAccountStatus(true);
                     					System.out.println("This Account is Reopened!!!");
                     				}
+                    				else break;
                             	}
                             	System.out.print("Enter the Amount : ");
                             	amount=sc.nextDouble();
@@ -269,51 +274,150 @@ public class TestBank {
                         				}while(freezeChoice!=2);
                         			}
                             	}
+                            else System.out.println("Account Not Found");
+                            System.out.println("--------------------------------------------------------------");
                             break;
                         case 5:
-                            // transferMoney()
                             System.out.println("Transferring Money...");
+                            System.out.print("Enter the Sender Account NO : ");
+                            accountNo=sc.nextInt();
+                            int rAccountNo;
+                            BankAccount sender=bank.searchAccountbyAccountNo(accountNo);
+                            if(sender != null) {
+                            	if(!sender.getAccountStatus()) {
+                            		System.out.println("Sender Account Is Closed.");
+                            		System.out.print("Do you want to Reopen it? (Y/N) : ");
+                    				choice=sc.next().charAt(0);
+                    				if(choice == 'Y' || choice == 'y') {
+                    					sender.setAccountStatus(true);
+                    					System.out.println("This Account is Reopened!!!");
+                    				}
+                    				else break;
+                            	}
+                            	System.out.print("Enter the Reciever Account NO : ");
+                                rAccountNo=sc.nextInt();
+                                BankAccount reciever=bank.searchAccountbyAccountNo(rAccountNo);
+                                if(reciever != null) {
+                                	if(!sender.getAccountStatus()) {
+                                		System.out.println("Reciever Account Is Closed.");
+                                		break;
+                                	}
+                                	System.out.print("Enter the Amount to Transfer : ");
+                                	amount=sc.nextDouble();
+                                	if(bank.transferMoney(sender,reciever,amount)) {
+                                		System.out.println("Transfer Successful!!!");
+                                	}
+                                	else {
+                                		System.out.println("Some Problem Occurred");
+                                	}
+                                	
+                                }
+                                else {
+                                	System.out.println("Reciever Not Found!!!");
+                                	break;
+                                }
+                            }
+                            else {
+                            	System.out.println("Sender Not Found!!!");
+                            	break;
+                            }
+                            System.out.println("--------------------------------------------------------------");
                             break;
                         case 6:
-                            // interest()
-                            System.out.println("Calculating Interest...");
+                            System.out.println("Paying EMI.....");
+                            System.out.print("Enter the Account NO : ");
+                            accountNo=sc.nextInt();
+                            bankAccount =bank.searchAccountbyAccountNo(accountNo);
+                            if(bankAccount != null) {
+                            	if(bankAccount instanceof LoanAccount) {
+                            		LoanAccount bankAccount1 = (LoanAccount) bankAccount;
+                            		if(bank.payEmi(bankAccount1,bankAccount1.getEmiAmount())) {
+                            			System.out.println("EMI Paid!!!");
+                            			if(bankAccount1.getTotalPayable() <=0) {
+                            				System.out.println("Loan is Cleared!!!");
+                            			}
+                            		}
+                            	}
+                            	else {
+                            		System.out.println("Account is Not a Loan Account!!!");
+                            		break;
+                            	}
+                            }
+                            else {
+                            	System.out.println("Account Not FOund!!!");
+                            	break;
+                            }
+                            System.out.println("--------------------------------------------------------------");
                             break;
                         case 7:
-                            // displayAllTransactions()
-                            System.out.println("Displaying Transactions...");
+                        	System.out.print("Enter the Account NO : ");
+                            accountNo=sc.nextInt();
+                            bankAccount =bank.searchAccountbyAccountNo(accountNo);
+                            if(bankAccount!= null) {
+                            	System.out.println("Displaying Transactions...");
+                            	bank.displayTransactions(bankAccount);
+                            	break;
+                            }
+                            System.out.println("Account Not Found!!!");
+                            System.out.println("--------------------------------------------------------------");
                             break;
+                            
+                        case 8:
+                        	System.out.println("Exiting Over the Counter Activities...");
+                        	System.out.println("--------------------------------------------------------------");
+                        	break;
                         default:
                             System.out.println("Invalid choice!");
+                            System.out.println("--------------------------------------------------------------");
                     }
+                    System.out.println("--------------------------------------------------------------");
                     break;
 
                 case 2:
                     System.out.println("\n--- Managerial Activities ---");
                     System.out.println("1. Generate Bank Report");
                     System.out.println("2. Display All Accounts");
+                    System.out.println("3. Calculate Interest on All Accounts");
+                    System.out.println("4. Exit.");
                     System.out.print("Enter your choice: ");
                     subChoice = sc.nextInt();
 
                     switch (subChoice) {
                         case 1:
-                            // generateBankReport()
                             System.out.println("Generating Bank Report...");
+                            bank.generateBankReport(bank.getAccounts());
+                            System.out.println("--------------------------------------------------------------");
                             break;
                         case 2:
-                            // displayAllAccounts()
                             System.out.println("Displaying All Accounts...");
+                            bank.displayAllAccounts();
+                            System.out.println("--------------------------------------------------------------");
+                            break;
+                            
+                        case 3:
+                        	System.out.println("Calculating Interest...");
+                            for(BankAccount bankAccount2 : bank.getAccounts()) {
+                            	if(bankAccount2.getAccountStatus()) {
+                            		bankAccount2.setBalance(bankAccount2.getBalance() + bankAccount2.calculateIntrest());
+                            	}
+                            }
+                            System.out.println("--------------------------------------------------------------");
                             break;
                         default:
                             System.out.println("Invalid choice!");
+                            System.out.println("--------------------------------------------------------------");
                     }
+                    System.out.println("--------------------------------------------------------------");
                     break;
 
                 case 3:
                     System.out.println("Exiting... Thank you!");
+                    System.out.println("--------------------------------------------------------------");
                     break;
 
                 default:
                     System.out.println("Invalid main choice!");
+                    System.out.println("--------------------------------------------------------------");
             }
         }
         while(mainChoice != 3);
