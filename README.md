@@ -44,11 +44,13 @@ Java Bank Case Study is a console-based banking management system implemented in
 ---
 
 ## 📁 Project Structure
+```
 Java_Bank_Case_Study/
 └── src/
 ├── accounts/       # All account types (BankAccount, Saving, Salary, Current, Loan)
 ├── business/       # Main testing class (TestBank)
 └── helpers/        # Bank operations and Transaction class
+```
 <details open>
 <summary><b>📂 Project File Index</b></summary>
 <br>
