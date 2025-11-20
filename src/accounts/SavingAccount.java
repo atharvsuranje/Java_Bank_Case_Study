@@ -3,6 +3,7 @@ package accounts;
 import helpers.Transaction;
 
 public class SavingAccount extends BankAccount{
+	private static final long serialVersionUID = 1L;
 	private static double interestRate;
 	private static double minimumBalance;
 	

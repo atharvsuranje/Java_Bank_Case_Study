@@ -2,11 +2,10 @@ package accounts;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Scanner;
-
 import helpers.Transaction;
 
 public class SalaryAccount extends BankAccount{
+	private static final long serialVersionUID = 1L;
 	private LocalDate lastTransactionDate;
 	private boolean isFrozen;
 	private String employerName;
@@ -60,8 +59,6 @@ public class SalaryAccount extends BankAccount{
         return this.getBalance() * (interestRate/100);
     }
 	
-	Scanner sc= new Scanner(System.in);
-	int choice;
 	@Override
 	public boolean withdraw(double amount) {
 		if (getTransactions().isEmpty()) {

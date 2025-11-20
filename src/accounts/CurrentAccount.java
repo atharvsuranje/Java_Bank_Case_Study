@@ -4,6 +4,7 @@ import helpers.Transaction;
 
 public class CurrentAccount extends BankAccount{
 	private double overDraftLimit;
+	private static final long serialVersionUID = 1L;
 
 	public CurrentAccount(String holderName, String mobileNo, String accountType,String holderCity,double overDraftLimit) {
 		super(holderName, mobileNo, accountType, holderCity);

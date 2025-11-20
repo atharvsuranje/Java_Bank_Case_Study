@@ -4,6 +4,7 @@ import helpers.Transaction;
 
 public class LoanAccount extends BankAccount {
 
+	private static final long serialVersionUID = 1L;
     private double loanAmount;          
     private static double loanInterestRate; 
     private int tenureInMonths;         

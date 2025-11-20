@@ -1,10 +1,12 @@
 package helpers;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Transaction {
+public class Transaction implements Serializable{
 	
 	private static int idCounter = 100;
+	private static final long serialVersionUID = 1L;
 	private int transactionId;
 	private LocalDate transactionDate;
 	private String transactionType;

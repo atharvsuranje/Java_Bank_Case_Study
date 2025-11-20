@@ -1,5 +1,10 @@
 package business;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import accounts.BankAccount;
@@ -12,9 +17,39 @@ import helpers.Bank;
 
 public class TestBank {
 
+	public static void saveData(Bank bank) {
+	    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("bankData.ser"))) {
+	        oos.writeObject(bank.getAccounts());
+	        System.out.println("\n Data Saved Successfully!");
+	    } catch (Exception e) {
+	        System.out.println("Error Saving Data: " + e.getMessage());
+	    }
+	}
+
+	@SuppressWarnings("unchecked")
+	public static boolean loadData(Bank bank) {
+	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("bankData.ser"))) {
+	        ArrayList<BankAccount> list = (ArrayList<BankAccount>) ois.readObject();
+	        bank.setAccounts(list);
+	        System.out.println("\n Previous Data Loaded Successfully!");
+	        return true;
+	    } catch (Exception e) {
+	        System.out.println("No Previous Data Found. Starting Fresh...");
+	        return false;
+	    }
+	}
+
+	
     public static void main(String[] args) {
     	Bank bank=new Bank();
-        Scanner sc = new Scanner(System.in);
+    	boolean dataLoaded=loadData(bank);
+    	
+    	if(!dataLoaded) {
+    		bank.initializeDefaultAccounts();
+    		bank.initializeDefaultTransactions();
+    	}
+    	
+    	Scanner sc = new Scanner(System.in);
         int mainChoice, subChoice;
         System.out.println("--------------------------------------------------------------");
 
@@ -22,7 +57,8 @@ public class TestBank {
             System.out.println("\n===== Bank Management System =====");
             System.out.println("1. Over the Counter Activities");
             System.out.println("2. Managerial Activities");
-            System.out.println("3. Exit");
+            System.out.println("3. Save Data to File");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
             mainChoice = sc.nextInt();
             System.out.println("--------------------------------------------------------------");
@@ -410,7 +446,14 @@ public class TestBank {
                     System.out.println("--------------------------------------------------------------");
                     break;
 
-                case 3:
+                case 3:{
+                	saveData(bank);
+                    break;
+                }
+                    
+                case 4:
+                	System.out.println("Saving data before exit...");
+                    saveData(bank);
                     System.out.println("Exiting... Thank you!");
                     System.out.println("--------------------------------------------------------------");
                     break;
@@ -420,7 +463,7 @@ public class TestBank {
                     System.out.println("--------------------------------------------------------------");
             }
         }
-        while(mainChoice != 3);
+        while(mainChoice != 4);
 
         sc.close();
     }

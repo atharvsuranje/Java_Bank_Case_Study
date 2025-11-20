@@ -1,14 +1,16 @@
 package accounts;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import helpers.Transaction;
 
-public abstract class BankAccount {
+public abstract class BankAccount implements Serializable{
 	
 	//attributes
 	private static int accountCounter=1000000;
+	private static final long serialVersionUID = 1L;
 	private int accNo;
 	private String holderName;
 	private String mobileNo;

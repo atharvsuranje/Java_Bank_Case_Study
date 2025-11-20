@@ -16,9 +16,7 @@ public class Bank {
 
 	
 	public Bank() {
-		accounts=new ArrayList<BankAccount>();
-		initializeDefaultAccounts();
-		initializeDefaultTransactions();
+		accounts=new ArrayList<BankAccount>();	
 	}
 
 	public static String getBranchName() {
@@ -193,8 +191,11 @@ public class Bank {
 	                " (A/c No: " + mostActive.getAccNo() + ", " + maxTransactions + " transactions)");
 
 	}
+	
+	
+	
+	// function for Adding default accounts to your Bank class's accounts ArrayList
 	public void initializeDefaultAccounts() {
-		// Example: Adding default accounts to your Bank class's accounts ArrayList
 		accounts.add(new SavingAccount("Amit Sharma", "9876543210", "Saving", "Mumbai"));
 		accounts.get(accounts.size() - 1).setOpeningDate(LocalDate.now().minusMonths(1));
 
@@ -227,6 +228,7 @@ public class Bank {
 
 	}
 	
+	//function for dummy transcations
 	public void initializeDefaultTransactions() {
 		// 1. Amit Sharma (SavingAccount) — skip first deposit
 		BankAccount acc1 = accounts.get(0);
